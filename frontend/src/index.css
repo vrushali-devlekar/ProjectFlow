@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { box-sizing: border-box; }
+
+:root {
+  --void:         #051F20;
+  --surface:      #0B2B26;
+  --panel:        #163832;
+  --border:       #235347;
+  --accent:       #28623A;
+  --accent-light: #8EB69B;
+  --text-bright:  #DAF1DE;
+}
+
+body {
+  background: var(--void);
+  color: #c8e6c9;
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--surface); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-light); }
+
+/* Column drag-over highlight */
+.dragging-over { background: rgba(40,98,58,0.10) !important; border-color: rgba(142,182,155,0.45) !important; }
+
+/* Noise texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* Glow accent line at top */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #28623A, #8EB69B, #28623A, transparent);
+  z-index: 100;
+}
+
+.priority-high   { color: #ff2d78; }
+.priority-medium { color: #ffb347; }
+.priority-low    { color: #8EB69B; }
+
+.tag-chip {
+  @apply inline-flex items-center px-2 py-0.5 rounded-full text-xs font-mono;
+  background: rgba(40,98,58,0.20);
+  color: #8EB69B;
+  border: 1px solid rgba(40,98,58,0.45);
+}
