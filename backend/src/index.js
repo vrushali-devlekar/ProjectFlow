@@ -12,6 +12,32 @@ const JWT_SECRET = process.env.JWT_SECRET || "projectflow-dev-secret-2024";
 const JWT_EXPIRES_IN = "24h";
 
 // ── Users Store ─────────────────────────────────────────────────────────────
+let tasks = [
+  {
+    id: "task-seed-1",
+    title: "Design new landing page layouts",
+    description:
+      "Create complete high-fidelity mockups inside Figma and plan responsiveness.",
+    priority: "high",
+    columnId: "col-1",
+    assigneeId: "m1",
+    order: 0,
+    tags: ["design", "frontend"],
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: "task-seed-2",
+    title: "Build user authentication mechanics",
+    description:
+      "Connect frontend login fields to active JSON Web Token infrastructure schemas.",
+    priority: "medium",
+    columnId: "col-2",
+    assigneeId: "m4",
+    order: 0,
+    tags: ["backend", "security"],
+    createdAt: new Date().toISOString(),
+  },
+];
 const users = [
   {
     id: "u1",
