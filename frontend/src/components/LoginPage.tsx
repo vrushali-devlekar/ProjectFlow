@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { LayoutGrid, Lock, User, Eye, EyeOff, AlertCircle } from "lucide-react";
 
-
 interface LoginPageProps {
   onLogin: (token: string, user: AuthUser) => void;
 }
@@ -28,11 +27,14 @@ export default function LoginPage({ onLogin }: LoginPageProps) {
     setError("");
     setLoading(true);
     try {
-      const res = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username: username.trim(), password }),
-      });
+      const res = await fetch(
+        "https://backend-projects-34.onrender.com/api/auth/login",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username: username.trim(), password }),
+        },
+      );
       const data = await res.json();
       if (!res.ok) {
         setError(data.error || "Login failed");
@@ -61,7 +63,9 @@ export default function LoginPage({ onLogin }: LoginPageProps) {
           <h1 className="font-display font-800 text-3xl tracking-tight text-white">
             Project<span className="text-accent-light">Flow</span>
           </h1>
-          <p className="text-gray-500 text-sm mt-1 font-mono">Sign in to your workspace</p>
+          <p className="text-gray-500 text-sm mt-1 font-mono">
+            Sign in to your workspace
+          </p>
         </div>
 
         <div className="bg-panel border border-border rounded-2xl p-8 shadow-card">
@@ -71,11 +75,14 @@ export default function LoginPage({ onLogin }: LoginPageProps) {
                 Username or Email
               </label>
               <div className="relative">
-                <User size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
+                <User
+                  size={16}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500"
+                />
                 <input
                   type="text"
                   value={username}
-                  onChange={e => setUsername(e.target.value)}
+                  onChange={(e) => setUsername(e.target.value)}
                   placeholder="admin"
                   required
                   autoFocus
@@ -89,18 +96,21 @@ export default function LoginPage({ onLogin }: LoginPageProps) {
                 Password
               </label>
               <div className="relative">
-                <Lock size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
+                <Lock
+                  size={16}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500"
+                />
                 <input
                   type={showPassword ? "text" : "password"}
                   value={password}
-                  onChange={e => setPassword(e.target.value)}
+                  onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
                   required
                   className="w-full pl-9 pr-10 py-3 bg-surface border border-border rounded-xl text-white text-sm placeholder-gray-600 focus:outline-none focus:border-accent/60 focus:ring-1 focus:ring-accent/30 transition-all"
                 />
                 <button
                   type="button"
-                  onClick={() => setShowPassword(v => !v)}
+                  onClick={() => setShowPassword((v) => !v)}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300 transition-colors"
                 >
                   {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
@@ -130,7 +140,6 @@ export default function LoginPage({ onLogin }: LoginPageProps) {
               )}
             </button>
           </form>
-
         </div>
       </div>
     </div>
