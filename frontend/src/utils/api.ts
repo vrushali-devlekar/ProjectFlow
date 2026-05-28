@@ -1,12 +1,9 @@
 import axios from "axios";
 import type { Task, Column, Member, Stats } from "../types";
 
-const isProduction = import.meta.env.PROD;
-
 const api = axios.create({
-  baseURL: isProduction
-    ? "https://backend-projects-34.onrender.com/api"
-    : "/api",
+  // Hardcoding your live Render URL ensures your frontend always communicates with the cloud backend
+  baseURL: "https://backend-projects-34.onrender.com/api",
 });
 
 api.interceptors.request.use((config) => {
