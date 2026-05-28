@@ -1,2 +1,8 @@
-backend/node_modules
-frontend/node_modules
+# Node dependencies
+node_modules/
+dist/
+.env
+
+# Frontend specific local files
+frontend/node_modules/
+backend/node_modules/
